@@ -22,8 +22,6 @@ $(document)
 		return false;
 	}
 
-	console.log(dataObj);
-
 	// Assuming the code gets this far, we can start the ajax process
 	_error.hide();
 
@@ -38,13 +36,15 @@ $(document)
 		// Whatever data is 
 		console.log(data);
 		if(data.redirect !== undefined) {
-			// window.location = data.redirect;
+			window.location = data.redirect;
+		} else if(data.error !== undefined) {
+			_error
+				.text(data.error)
+				.show();
 		}
-
-		alert(data.name);
 	})
 	.fail(function ajaxFailed(e) {
-		// This failed 
+		// This failed
 		console.log(e);
 	})
 	.always(function ajaxAlwaysDoThis(data) {
